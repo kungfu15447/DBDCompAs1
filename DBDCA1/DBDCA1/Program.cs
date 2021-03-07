@@ -128,17 +128,18 @@ namespace DBDCA1
                     GetDepartment();
                     break;
                 case 4:
-                    GetAllDepartments(service);
+                    GetAllDepartments();
                     break;
                 case 5: 
                     UpdateDepartmentName();
+                    break;
                 default:
                     Console.WriteLine("Choise does not exists");
                     break;
             }
         }
 
-        private static void GetAllDepartments(DepartmentService service)
+        private static void GetAllDepartments()
         {
             Console.WriteLine("Department Id | Department Name | Manager SSN");
             foreach (var department in service.GetAllDepartments())
