@@ -163,10 +163,9 @@ namespace DBDCA1
 
         private static void GetAllDepartments()
         {
-            Console.WriteLine("Department Id | Department Name | Manager SSN");
-            foreach (var department in service.GetAllDepartments())
+            foreach (var d in service.GetAllDepartments())
             {
-                Console.WriteLine($"{department.DNumber} | {department.DName} | {department.MgrSSN}");
+                Console.WriteLine($"Id: {d.DNumber} | Name: {d.DName} | MgrSSN: {d.MgrSSN} | MgrStartDate: {d.MgrStartDate} | EmpCount: {d.EmpCount}");
             }
         }
     }
