@@ -6,14 +6,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [UpdateDepartmentName]
+CREATE PROCEDURE [usp.UpdateDepartmentName]
 	@DNumber int,
 	@DName varchar(50)
 AS
 BEGIN
 SET NOCOUNT ON;
-
-Exec ThrowIfNotUniqueDName @DName = @DName
 
 	UPDATE Department 
 	SET  DName = @DName
