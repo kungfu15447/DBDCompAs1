@@ -61,7 +61,7 @@ namespace DBDCA1
             }
         }
 
-        static void GetDepartment(DepartmentService service ) {
+        static void GetDepartment() {
             Console.WriteLine("Enter the id of the department");
             var couldParse = int.TryParse(Console.ReadLine(), out int dNumber);
 
@@ -77,7 +77,7 @@ namespace DBDCA1
             }
         }
 
-        static void UpdateDepartmentName(DepartmentService service) {
+        static void UpdateDepartmentName() {
             Console.WriteLine("Enter the id of the department you want to update the name on ");
             var couldParse = int.TryParse(Console.ReadLine(), out int dNumber);
             Console.WriteLine("Enter a new name for the department");
@@ -125,10 +125,10 @@ namespace DBDCA1
                     DeleteDepartment();
                     break;
                 case 3:
-                    GetDepartment(service);
+                    GetDepartment();
                     break;
                 case 4:
-                    UpdateDepartmentName(service);
+                    UpdateDepartmentName();
                     break;
                 default:
                     Console.WriteLine("Choise does not exists");
