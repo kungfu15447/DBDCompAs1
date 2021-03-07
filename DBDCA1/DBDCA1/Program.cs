@@ -39,7 +39,7 @@ namespace DBDCA1
             if (isValid) {
                 Options(choice);
             } else {
-                Console.WriteLine("The entered index was not valid");
+                Console.WriteLine("The entered index was not valid - press a key to try again");
                 Console.ReadLine();
                 Menu();
             }
@@ -47,6 +47,12 @@ namespace DBDCA1
 
         static void Quit() {
             Environment.Exit(0);
+        }
+        static void BackToMenu() {
+            Console.WriteLine("");
+            Console.WriteLine("Press a button to return to the menu...");
+            Console.ReadLine();
+            Menu();
         }
 
         static void CreateDepartment()
@@ -69,9 +75,7 @@ namespace DBDCA1
                     Console.WriteLine(ex.Message);
                 }
                 finally {
-                    Console.WriteLine("Press a button to return to the menu");
-                    Console.ReadLine();
-                    Menu();
+                    BackToMenu();
                 }
             }
         }
@@ -89,9 +93,7 @@ namespace DBDCA1
 
                     Console.WriteLine(ex.Message);
                 } finally {
-                    Console.WriteLine("Press a button to return to the menu");
-                    Console.ReadLine();
-                    Menu();
+                    BackToMenu();
                 }
             }
         }
@@ -110,9 +112,7 @@ namespace DBDCA1
 
                     Console.WriteLine(ex.Message);
                 } finally {
-                    Console.WriteLine("Press a button to return to the menu");
-                    Console.ReadLine();
-                    Menu();
+                    BackToMenu();
                 }
             }
         }
@@ -134,9 +134,7 @@ namespace DBDCA1
                 {
                     Console.WriteLine(ex.Message);
                 } finally {
-                    Console.WriteLine("Press a button to return to the menu");
-                    Console.ReadLine();
-                    Menu();
+                    BackToMenu();
                 }
             }
         }
@@ -155,9 +153,7 @@ namespace DBDCA1
 
                     Console.WriteLine(ex.Message);
                 } finally {
-                    Console.WriteLine("Press a button to return to the menu");
-                    Console.ReadLine();
-                    Menu();
+                    BackToMenu();
                 }
             }
         }
