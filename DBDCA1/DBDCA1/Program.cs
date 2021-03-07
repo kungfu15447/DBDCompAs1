@@ -10,10 +10,12 @@ namespace DBDCA1
         static List<string> options = new List<string>()
         {
             "Create Department",
+            "Delete Department",
             "Get Department",
-            "Update Department Name",
             "Get all Departments",
-            "Delete Department"
+            "Update Department Name",
+            "Update Department Manager",
+
         };
 
         static CompanyContext ctx = new CompanyContext();
@@ -113,9 +115,26 @@ namespace DBDCA1
                 }
             }
         }
+        static void UpdateDepartmentManager() {
+            Console.WriteLine("Enter the id of the Department Manager you want to update manager on");
+            var couldParse = int.TryParse(Console.ReadLine(), out int dNumber);
+            Console.WriteLine("Enter the mgrSSN for the new manager for the department");
+            var couldParseSSN = decimal.TryParse(Console.ReadLine(), out decimal mgrSSN);
+
+            if (couldParse && couldParseSSN) {
+                Console.WriteLine("Updating the department manager...");
+                try {
+                   service.UpdateDepartmentManager(dNumber, mgrSSN);
+                } catch (SqlException ex) {
+
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
 
         static void Options(int option)
         {
+            
             switch(option)
             {
                 case 1:
@@ -132,6 +151,9 @@ namespace DBDCA1
                     break;
                 case 5: 
                     UpdateDepartmentName();
+                    break;
+                case 6:
+                    UpdateDepartmentManager();
                     break;
                 default:
                     Console.WriteLine("Choise does not exists");
