@@ -9,13 +9,15 @@ namespace DBDCA1
     {
         static List<string> options = new List<string>()
         {
-            "Create Department"
+            "Create Department",
+            "Delete Department"
         };
+
+        static CompanyContext ctx = new CompanyContext();
+        static DepartmentService service = new DepartmentService(ctx);
+
         static void Main(string[] args)
         {
-            var ctx = new CompanyContext();
-            var service = new DepartmentService(ctx);
-
             Console.WriteLine("Please type index for selected query");
 
             for (int i = 0; i < options.Count; i++)
@@ -34,7 +36,7 @@ namespace DBDCA1
             }
         }
 
-        static void CreateDepartment(DepartmentService service)
+        static void CreateDepartment()
         {
             Console.WriteLine("Enter name of department");
             var dName = Console.ReadLine();
@@ -54,8 +56,26 @@ namespace DBDCA1
                     Console.WriteLine(ex.Message);
                 }
             }
-            Console.WriteLine("Press enter to quit");
-            Console.ReadLine();
+        }
+
+        static void DeleteDepartment()
+        {
+            Console.WriteLine("Enter number of department to delete");
+            var isNumber = int.TryParse(Console.ReadLine(), out int dNumber);
+
+            if (isNumber)
+            {
+                Console.WriteLine("Deleting department");
+                try
+                {
+                    service.DeleteDepartment(dNumber);
+                    Console.WriteLine("Deleted succesfully");
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
         }
 
         static void Options(int option, DepartmentService service)
@@ -63,7 +83,10 @@ namespace DBDCA1
             switch(option)
             {
                 case 1:
-                    CreateDepartment(service);
+                    CreateDepartment();
+                    break;
+                case 2:
+                    DeleteDepartment();
                     break;
                 default:
                     Console.WriteLine("Choise does not exists");
