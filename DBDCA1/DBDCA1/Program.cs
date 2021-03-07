@@ -10,10 +10,10 @@ namespace DBDCA1
         static List<string> options = new List<string>()
         {
             "Create Department",
-            "Delete Department",
             "Get Department",
             "Update DepartmentName",
-            
+            "Get all Departments",
+            "Delete Department"
         };
 
         static CompanyContext ctx = new CompanyContext();
@@ -128,11 +128,22 @@ namespace DBDCA1
                     GetDepartment();
                     break;
                 case 4:
-                    UpdateDepartmentName();
+                    GetAllDepartments(service);
                     break;
+                case 5: 
+                    UpdateDepartmentName();
                 default:
                     Console.WriteLine("Choise does not exists");
                     break;
+            }
+        }
+
+        private static void GetAllDepartments(DepartmentService service)
+        {
+            Console.WriteLine("Department Id | Department Name | Manager SSN");
+            foreach (var department in service.GetAllDepartments())
+            {
+                Console.WriteLine($"{department.DNumber} | {department.DName} | {department.MgrSSN}");
             }
         }
     }

@@ -1,3 +1,4 @@
+﻿using Microsoft.EntityFrameworkCore;
 ﻿using Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,6 +12,7 @@ namespace Infrastructure
         public CompanyContext()
         {
         }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

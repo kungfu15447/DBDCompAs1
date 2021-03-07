@@ -1,4 +1,5 @@
-﻿using Infrastructure.Models;
+using Microsoft.EntityFrameworkCore;
+using Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Infrastructure
         {
             _ctx = ctx;
         }
+
 
         public void CreateDepartment(string dName, decimal mgrSSN)
         {
@@ -37,6 +39,11 @@ namespace Infrastructure
         
         public void UpdateDepartmentName(int dNumber, string dName) {
             _ctx.Database.ExecuteSqlRaw("EXECUTE dbo.usp_UpdateDepartmentName {0}, {1}", dNumber, dName);
+        }
+        
+        public List<Department> GetAllDepartments()
+        {
+            return _ctx.Department.FromSqlRaw("EXECUTE dbo.usp_GetAllDepartments").ToList();
         }
     }
 }
