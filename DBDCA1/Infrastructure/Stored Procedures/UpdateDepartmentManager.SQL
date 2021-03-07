@@ -15,4 +15,3 @@ BEGIN
 	WHERE (DNo = @DNumber) AND (SSN <> @MgrSSN);
 
 END
-

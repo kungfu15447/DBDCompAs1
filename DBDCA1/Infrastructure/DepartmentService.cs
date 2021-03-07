@@ -36,6 +36,10 @@ namespace Infrastructure
             _ctx.Database.ExecuteSqlRaw("EXECUTE dbo.usp_UpdateDepartmentName {0}, {1}", dNumber, dName);
         }
         
+        public void UpdateDepartmentManager(int dNumber, decimal mgrSSN) {
+            _ctx.Database.ExecuteSqlRaw("EXECUTE dbo.usp_UpdateDepartmentManager {0}, {1}", dNumber, mgrSSN);
+        }
+
         public List<Department> GetAllDepartments()
         {
             return _ctx.Department.FromSqlRaw("EXECUTE dbo.usp_GetAllDepartments").ToList();
