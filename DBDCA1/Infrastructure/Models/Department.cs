@@ -10,6 +10,6 @@ namespace Infrastructure.Models
         public string DName { get; set; }
         public DateTime MgrStartDate { get; set; }
         public decimal MgrSSN { get; set; }
-        public int? EmpCount { get; set; }
+        public int? EmpCount { get; private set; }
     }
 }

@@ -23,11 +23,6 @@ namespace Infrastructure
             _ctx.Database.ExecuteSqlRaw("EXECUTE dbo.usp_CreateDepartment {0}, {1}", dName, mgrSSN);
         }
 
-        public List<Department> GetAllDepartments()
-        {
-            return _ctx.Department.ToList();
-        }
-
         public void DeleteDepartment(int dNumber) {
             _ctx.Database.ExecuteSqlRaw("EXECUTE dbo.usp_DeleteDepartment {0}", dNumber);
         }

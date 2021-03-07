@@ -26,6 +26,10 @@ namespace Infrastructure
         {
             modelBuilder.Entity<Department>()
                 .HasKey(d => d.DNumber);
+
+            modelBuilder.Entity<Department>()
+                .Property(d => d.EmpCount)
+                .HasComputedColumnSql();
         }
 
         public DbSet<Department> Department { get; set; }
