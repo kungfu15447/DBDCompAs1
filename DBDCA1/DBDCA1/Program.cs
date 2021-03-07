@@ -10,9 +10,10 @@ namespace DBDCA1
         static List<string> options = new List<string>()
         {
             "Create Department",
+            "Delete Department",
             "Get Department",
             "Update DepartmentName",
-            "Delete Department"
+            
         };
 
         static CompanyContext ctx = new CompanyContext();
@@ -91,8 +92,6 @@ namespace DBDCA1
                     Console.WriteLine(ex.Message);
                 }
             }
-
-
         }
 
         static void DeleteDepartment()
