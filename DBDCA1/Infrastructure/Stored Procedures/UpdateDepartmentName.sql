@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [usp.UpdateDepartmentName]
+CREATE PROCEDURE [usp_UpdateDepartmentName]
 	@DNumber int,
 	@DName varchar(50)
 AS

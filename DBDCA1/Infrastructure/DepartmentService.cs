@@ -25,5 +25,14 @@ namespace Infrastructure
         {
             return _ctx.Department.ToList();
         }
+
+        public Department GetDepartment(int dNumber) {
+            return _ctx.Department.FromSqlRaw<Department>("EXECUTE dbo.usp_GetDepartment {0}", dNumber).ToList().FirstOrDefault();
+
+        }
+        
+        public void UpdateDepartmentName(int dNumber, string dName) {
+            _ctx.Database.ExecuteSqlRaw("EXECUTE dbo.usp_UpdateDepartmentName {0}, {1}", dNumber, dName);
+        }
     }
 }
