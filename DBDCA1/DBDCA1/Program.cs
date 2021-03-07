@@ -15,7 +15,7 @@ namespace DBDCA1
             "Get all Departments",
             "Update Department Name",
             "Update Department Manager",
-
+            "Quit"
         };
 
         static CompanyContext ctx = new CompanyContext();
@@ -23,22 +23,36 @@ namespace DBDCA1
 
         static void Main(string[] args)
         {
+            Menu();
+        }
+
+        static void Menu() {
+            Console.Clear();
             Console.WriteLine("Please type index for selected query");
 
-            for (int i = 0; i < options.Count; i++)
-            {
-                Console.WriteLine($"{i+1}. {options[i]}");
+            for (int i = 0; i < options.Count; i++) {
+                Console.WriteLine($"{i + 1}. {options[i]}");
             }
 
             var isValid = int.TryParse(Console.ReadLine(), out int choice);
 
-            if (isValid)
-            {
+            if (isValid) {
                 Options(choice);
-            } else
-            {
-                Console.WriteLine("Not valid");
+            } else {
+                Console.WriteLine("The entered index was not valid - press a key to try again");
+                Console.ReadLine();
+                Menu();
             }
+        }
+
+        static void Quit() {
+            Environment.Exit(0);
+        }
+        static void BackToMenu() {
+            Console.WriteLine("");
+            Console.WriteLine("Press a button to return to the menu...");
+            Console.ReadLine();
+            Menu();
         }
 
         static void CreateDepartment()
@@ -60,6 +74,9 @@ namespace DBDCA1
                 {
                     Console.WriteLine(ex.Message);
                 }
+                finally {
+                    BackToMenu();
+                }
             }
         }
 
@@ -75,12 +92,14 @@ namespace DBDCA1
                 } catch (SqlException ex) {
 
                     Console.WriteLine(ex.Message);
+                } finally {
+                    BackToMenu();
                 }
             }
         }
 
         static void UpdateDepartmentName() {
-            Console.WriteLine("Enter the id of the department you want to update the name on ");
+            Console.WriteLine("Enter the id of the department you want to update the name on");
             var couldParse = int.TryParse(Console.ReadLine(), out int dNumber);
             Console.WriteLine("Enter a new name for the department");
             var dName = Console.ReadLine();
@@ -92,6 +111,8 @@ namespace DBDCA1
                 } catch (SqlException ex) {
 
                     Console.WriteLine(ex.Message);
+                } finally {
+                    BackToMenu();
                 }
             }
         }
@@ -112,11 +133,13 @@ namespace DBDCA1
                 catch (SqlException ex)
                 {
                     Console.WriteLine(ex.Message);
+                } finally {
+                    BackToMenu();
                 }
             }
         }
         static void UpdateDepartmentManager() {
-            Console.WriteLine("Enter the id of the Department Manager you want to update manager on");
+            Console.WriteLine("Enter the id of the Department you want to update the manager on");
             var couldParse = int.TryParse(Console.ReadLine(), out int dNumber);
             Console.WriteLine("Enter the mgrSSN for the new manager for the department");
             var couldParseSSN = decimal.TryParse(Console.ReadLine(), out decimal mgrSSN);
@@ -125,9 +148,12 @@ namespace DBDCA1
                 Console.WriteLine("Updating the department manager...");
                 try {
                    service.UpdateDepartmentManager(dNumber, mgrSSN);
+                   Console.WriteLine("The department manager was updated");
                 } catch (SqlException ex) {
 
                     Console.WriteLine(ex.Message);
+                } finally {
+                    BackToMenu();
                 }
             }
         }
@@ -154,6 +180,9 @@ namespace DBDCA1
                     break;
                 case 6:
                     UpdateDepartmentManager();
+                    break;
+                case 7:
+                    Quit();
                     break;
                 default:
                     Console.WriteLine("Choise does not exists");
