@@ -10,7 +10,10 @@ namespace DBDCA1
         static List<string> options = new List<string>()
         {
             "Create Department",
-            "Delete Department"
+            "Delete Department",
+            "Get Department",
+            "Update DepartmentName",
+            
         };
 
         static CompanyContext ctx = new CompanyContext();
@@ -58,6 +61,39 @@ namespace DBDCA1
             }
         }
 
+        static void GetDepartment(DepartmentService service ) {
+            Console.WriteLine("Enter the id of the department");
+            var couldParse = int.TryParse(Console.ReadLine(), out int dNumber);
+
+            if(couldParse) {
+                Console.WriteLine("Getting the department...");
+                try {
+                    var d = service.GetDepartment(dNumber);
+                    Console.WriteLine($"Id: {d.DNumber} | Name: {d.DName} | MgrSSN: {d.MgrSSN} | MgrStartDate: {d.MgrStartDate} | NoOfEmployees: {d.NoOfEmployees}");
+                } catch (SqlException ex) {
+
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        static void UpdateDepartmentName(DepartmentService service) {
+            Console.WriteLine("Enter the id of the department you want to update the name on ");
+            var couldParse = int.TryParse(Console.ReadLine(), out int dNumber);
+            Console.WriteLine("Enter a new name for the department");
+            var dName = Console.ReadLine();
+
+            if(couldParse && !String.IsNullOrEmpty(dName)) {
+                Console.WriteLine("Updating the department...");
+                try {
+                    service.UpdateDepartmentName(dNumber, dName);
+                } catch (SqlException ex) {
+
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
         static void DeleteDepartment()
         {
             Console.WriteLine("Enter number of department to delete");
@@ -87,6 +123,12 @@ namespace DBDCA1
                     break;
                 case 2:
                     DeleteDepartment();
+                    break;
+                case 3:
+                    GetDepartment(service);
+                    break;
+                case 4:
+                    UpdateDepartmentName(service);
                     break;
                 default:
                     Console.WriteLine("Choise does not exists");
