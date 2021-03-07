@@ -6,6 +6,7 @@ CREATE PROCEDURE usp_UpdateDepartmentManager
     
     AS
 BEGIN 
+
 UPDATE Department
 SET MgrSSN = @MgrSSN,
 SET MgrStartDate AS CURRENT_TIMESTAMP,
@@ -15,6 +16,6 @@ UPDATE Employee
 SET SuperSSN = @MgrSSN
 WHERE (DNo = @DNumber) AND
       (SSN <> @MgrSSN);
-END
 
+END
 
