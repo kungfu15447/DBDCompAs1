@@ -74,9 +74,6 @@ namespace DBDCA1
                 {
                     Console.WriteLine(ex.Message);
                 }
-                finally {
-                    BackToMenu();
-                }
             }
         }
 
@@ -92,8 +89,6 @@ namespace DBDCA1
                 } catch (SqlException ex) {
 
                     Console.WriteLine(ex.Message);
-                } finally {
-                    BackToMenu();
                 }
             }
         }
@@ -111,8 +106,6 @@ namespace DBDCA1
                 } catch (SqlException ex) {
 
                     Console.WriteLine(ex.Message);
-                } finally {
-                    BackToMenu();
                 }
             }
         }
@@ -133,8 +126,6 @@ namespace DBDCA1
                 catch (SqlException ex)
                 {
                     Console.WriteLine(ex.Message);
-                } finally {
-                    BackToMenu();
                 }
             }
         }
@@ -152,15 +143,13 @@ namespace DBDCA1
                 } catch (SqlException ex) {
 
                     Console.WriteLine(ex.Message);
-                } finally {
-                    BackToMenu();
                 }
             }
         }
 
         static void Options(int option)
         {
-            
+            var willStop = false;
             switch(option)
             {
                 case 1:
@@ -183,10 +172,16 @@ namespace DBDCA1
                     break;
                 case 7:
                     Quit();
+                    willStop = true;
                     break;
                 default:
                     Console.WriteLine("Choise does not exists");
                     break;
+            }
+
+            if (!willStop)
+            {
+                BackToMenu();
             }
         }
 
