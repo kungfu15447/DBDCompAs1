@@ -1,0 +1,1 @@
+ALTER TABLE Department ADD EmpCount as dbo.udf_GetEmployeesInDepartment(DNumber)
