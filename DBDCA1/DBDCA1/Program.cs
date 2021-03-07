@@ -9,7 +9,8 @@ namespace DBDCA1
     {
         static List<string> options = new List<string>()
         {
-            "Create Department"
+            "Create Department",
+            "See all the Departments with count of Employees"
         };
         static void Main(string[] args)
         {
@@ -65,9 +66,21 @@ namespace DBDCA1
                 case 1:
                     CreateDepartment(service);
                     break;
+                case 2:
+                    GetAllDepartments(service);
+                    break;
                 default:
                     Console.WriteLine("Choise does not exists");
                     break;
+            }
+        }
+
+        private static void GetAllDepartments(DepartmentService service)
+        {
+            Console.WriteLine("Department Id | Department Name | Manager SSN");
+            foreach (var department in service.GetAllDepartments())
+            {
+                Console.WriteLine($"{department.DNumber} | {department.DName} | {department.MgrSSN}");
             }
         }
     }

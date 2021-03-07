@@ -1,6 +1,5 @@
-
-﻿using Microsoft.EntityFrameworkCore;
-﻿using Infrastructure.Models;
+using Microsoft.EntityFrameworkCore;
+using Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,7 +25,7 @@ namespace Infrastructure
 
         public List<Department> GetAllDepartments()
         {
-            return _ctx.Department.ToList();
+            return _ctx.Department.FromSqlRaw("EXECUTE dbo.usp_GetAllDepartments").ToList();
         }
     }
 }
