@@ -11,13 +11,15 @@ namespace DBDCA1
         {
             "Create Department",
             "Get Department",
-            "Update DepartmentName"
+            "Update DepartmentName",
+            "Delete Department"
         };
+
+        static CompanyContext ctx = new CompanyContext();
+        static DepartmentService service = new DepartmentService(ctx);
+
         static void Main(string[] args)
         {
-            var ctx = new CompanyContext();
-            var service = new DepartmentService(ctx);
-
             Console.WriteLine("Please type index for selected query");
 
             for (int i = 0; i < options.Count; i++)
@@ -29,14 +31,14 @@ namespace DBDCA1
 
             if (isValid)
             {
-                Options(choice, service);
+                Options(choice);
             } else
             {
                 Console.WriteLine("Not valid");
             }
         }
 
-        static void CreateDepartment(DepartmentService service)
+        static void CreateDepartment()
         {
             Console.WriteLine("Enter name of department");
             var dName = Console.ReadLine();
@@ -56,8 +58,6 @@ namespace DBDCA1
                     Console.WriteLine(ex.Message);
                 }
             }
-            Console.WriteLine("Press enter to quit");
-            Console.ReadLine();
         }
 
         static void GetDepartment(DepartmentService service ) {
@@ -95,17 +95,40 @@ namespace DBDCA1
 
         }
 
-        static void Options(int option, DepartmentService service)
+        static void DeleteDepartment()
+        {
+            Console.WriteLine("Enter number of department to delete");
+            var isNumber = int.TryParse(Console.ReadLine(), out int dNumber);
+
+            if (isNumber)
+            {
+                Console.WriteLine("Deleting department");
+                try
+                {
+                    service.DeleteDepartment(dNumber);
+                    Console.WriteLine("Deleted succesfully");
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        static void Options(int option)
         {
             switch(option)
             {
                 case 1:
-                    CreateDepartment(service);
+                    CreateDepartment();
                     break;
                 case 2:
-                    GetDepartment(service);
+                    DeleteDepartment();
                     break;
                 case 3:
+                    GetDepartment(service);
+                    break;
+                case 4:
                     UpdateDepartmentName(service);
                     break;
                 default:
