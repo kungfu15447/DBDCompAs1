@@ -1,4 +1,7 @@
+
 ﻿using Microsoft.EntityFrameworkCore;
+﻿using Infrastructure.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +18,15 @@ namespace Infrastructure
             _ctx = ctx;
         }
 
-        // public void CreateDepartment(string dName, decimal mgrSSN)
-        // {
-        //     _ctx.Database.ExecuteSqlRaw("EXECUTE dbo.usp_CreateDepartment {0}, {1}", dName, mgrSSN);
-        // }
 
-        // public virtual List<Department> GetAllDepartments()
-        // {
-        //     return _ctx.Department.FromSqlRaw("EXECUTE dbo.usp_GetAllDepartments").ToList();
-        // }
+        public void CreateDepartment(string dName, decimal mgrSSN)
+        {
+            _ctx.Database.ExecuteSqlRaw("EXECUTE dbo.usp_CreateDepartment {0}, {1}", dName, mgrSSN);
+        }
+
+        public List<Department> GetAllDepartments()
+        {
+            return _ctx.Department.ToList();
+        }
     }
 }
