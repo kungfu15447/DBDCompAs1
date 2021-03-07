@@ -11,7 +11,7 @@ namespace DBDCA1
         {
             "Create Department",
             "Get Department",
-            "Update DepartmentName",
+            "Update Department Name",
             "Get all Departments",
             "Delete Department"
         };
