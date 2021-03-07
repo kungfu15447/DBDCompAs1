@@ -29,7 +29,7 @@ namespace DBDCA1
 
             if (isValid)
             {
-                Options(choice, service);
+                Options(choice);
             } else
             {
                 Console.WriteLine("Not valid");
@@ -78,7 +78,7 @@ namespace DBDCA1
             }
         }
 
-        static void Options(int option, DepartmentService service)
+        static void Options(int option)
         {
             switch(option)
             {
