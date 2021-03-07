@@ -17,9 +17,7 @@ namespace DBDCA1
             "Update Department Manager",
             "Quit"
         };
-
-        static CompanyContext ctx = new CompanyContext();
-        static DepartmentService service = new DepartmentService(ctx);
+        static DepartmentService service;
 
         static void Main(string[] args)
         {
@@ -27,6 +25,7 @@ namespace DBDCA1
         }
 
         static void Menu() {
+            service = new DepartmentService(new CompanyContext());
             Console.Clear();
             Console.WriteLine("Please type index for selected query");
 
@@ -85,7 +84,14 @@ namespace DBDCA1
                 Console.WriteLine("Getting the department...");
                 try {
                     var d = service.GetDepartment(dNumber);
-                    Console.WriteLine($"Id: {d.DNumber} | Name: {d.DName} | MgrSSN: {d.MgrSSN} | MgrStartDate: {d.MgrStartDate} | EmpCount: {d.EmpCount}");
+                    if (d != null)
+                    {
+                        Console.WriteLine($"Id: {d.DNumber} | Name: {d.DName} | MgrSSN: {d.MgrSSN} | MgrStartDate: {d.MgrStartDate} | EmpCount: {d.EmpCount}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Could not find department");
+                    }
                 } catch (SqlException ex) {
 
                     Console.WriteLine(ex.Message);
@@ -103,6 +109,7 @@ namespace DBDCA1
                 Console.WriteLine("Updating the department...");
                 try {
                     service.UpdateDepartmentName(dNumber, dName);
+                    Console.WriteLine("Succesfully updated department name");
                 } catch (SqlException ex) {
 
                     Console.WriteLine(ex.Message);
