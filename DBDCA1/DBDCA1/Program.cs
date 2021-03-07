@@ -69,7 +69,7 @@ namespace DBDCA1
                 Console.WriteLine("Getting the department...");
                 try {
                     var d = service.GetDepartment(dNumber);
-                    Console.WriteLine($"Id: {d.DNumber} | Name: {d.DName} | MgrSSN: {d.MgrSSN} | MgrStartDate: {d.MgrStartDate} | NoOfEmployees: {d.NoOfEmployees}");
+                    Console.WriteLine($"Id: {d.DNumber} | Name: {d.DName} | MgrSSN: {d.MgrSSN} | MgrStartDate: {d.MgrStartDate} | EmpCount: {d.EmpCount}");
                 } catch (SqlException ex) {
 
                     Console.WriteLine(ex.Message);

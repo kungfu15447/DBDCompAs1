@@ -33,7 +33,7 @@ namespace Infrastructure
         }
 
         public Department GetDepartment(int dNumber) {
-            return _ctx.Department.FromSqlRaw<Department>("EXECUTE dbo.usp_GetDepartment {0}", dNumber).ToList().FirstOrDefault();
+            return _ctx.Department.FromSqlRaw("EXECUTE dbo.usp_GetDepartment {0}", dNumber).ToList().FirstOrDefault();
 
         }
         
