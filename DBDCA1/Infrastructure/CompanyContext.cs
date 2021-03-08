@@ -18,7 +18,7 @@ namespace Infrastructure
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=SCHWEIZEREN-PC;Initial Catalog=Company;Integrated Security=True");
+                optionsBuilder.UseSqlServer(@"Data Source=MSI;Initial Catalog=Company;Integrated Security=True");
             }
         }
 
